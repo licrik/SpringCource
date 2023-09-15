@@ -15,25 +15,15 @@ public class Book {
     @NotEmpty(message = "Author should be not empty")
     private String author;
 
-    private int clientId;
-
     public Book() {
 
     }
 
-    public Book(int id, String name, int year, @NotEmpty(message = "Author should be not empty") String author) {
+    public Book(int id, String name, int year, String author) {
         this.id = id;
         this.name = name;
         this.year = year;
         this.author = author;
-    }
-
-    public Book(int id, String name, int year, @NotEmpty(message = "Author should be not empty") String author, int clientId) {
-        this.id = id;
-        this.name = name;
-        this.year = year;
-        this.author = author;
-        this.clientId = clientId;
     }
 
     public int getId() {
@@ -58,14 +48,6 @@ public class Book {
 
     public void setYear(int year) {
         this.year = year;
-    }
-
-    public int getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
     }
 
     public String getAuthor() {
