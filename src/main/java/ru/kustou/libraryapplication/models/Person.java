@@ -2,11 +2,13 @@ package ru.kustou.libraryapplication.models;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 public class Person {
     private int id;
 
     @NotEmpty(message = "FIO should be not empty")
+    @Pattern(regexp = "([А-Я][а-я]+\\s*)*", message = "You FIO not correct")
     private String fio;
 
     @Min(value = 0, message = "Year should great than 0")

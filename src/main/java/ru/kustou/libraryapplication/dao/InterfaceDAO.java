@@ -1,9 +1,10 @@
 package ru.kustou.libraryapplication.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface InterfaceDAO<T> {
-    T findById(int id);
+    Optional<T> findById(int id);
 
     List<T> getAll();
 
@@ -11,5 +12,5 @@ public interface InterfaceDAO<T> {
 
     void delete(int id);
 
-    void update(T model);
+    void update(int id, T model);
 }

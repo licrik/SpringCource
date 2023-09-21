@@ -4,16 +4,16 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 public class Book {
-    private int id;
+    protected int id;
 
     @NotEmpty(message = "Name should be not empty")
-    private String name;
+    protected String name;
 
     @Min(value = 0, message = "Year should great than 0")
     private int year;
 
     @NotEmpty(message = "Author should be not empty")
-    private String author;
+    protected String author;
 
     public Book() {
 
