@@ -1,8 +1,12 @@
 package ru.kustou.springcourse.models;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 
 @Entity
 @Table(name = "books")
@@ -27,6 +31,14 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clientid", referencedColumnName = "id")
     private Person owner;
+
+    @Column(name = "time_taken")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date timeTaken;
+
+    @Transient
+    private boolean isOverdue;
 
     public Book() {
 
@@ -82,5 +94,21 @@ public class Book {
     @Override
     public String toString() {
         return name + ", " + author + ", " + year;
+    }
+
+    public Date getTimeTaken() {
+        return timeTaken;
+    }
+
+    public void setTimeTaken(Date timeTaken) {
+        this.timeTaken = timeTaken;
+    }
+
+    public boolean getIsOverdue() {
+        return isOverdue;
+    }
+
+    public void setIsOverdue(boolean isOverdue) {
+        this.isOverdue = isOverdue;
     }
 }

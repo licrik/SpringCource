@@ -14,7 +14,8 @@
     <p>Книги:</p>
     <div th:each="book : ${books}">
         <p  th:href="@{/books/{id}(id=${book.getId()})}"
-            th:text="${book.toString()}">book</p>
+            th:text="${book.toString()}"
+            th:style="|${book.getIsOverdue() ? 'color: red;' : 'color: black;'}|">book</p>
     </div>
 </div>
 <hr/>

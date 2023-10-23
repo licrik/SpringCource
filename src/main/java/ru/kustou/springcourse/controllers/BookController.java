@@ -14,6 +14,7 @@ import ru.kustou.springcourse.services.IPersonService;
 import ru.kustou.springcourse.utils.BookValidator;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/books")
@@ -34,8 +35,12 @@ public class BookController {
     }
 
     @GetMapping
-    public String index(Model model) {
-        model.addAttribute("books", this.bookService.getAll());
+    public String index(Model model,
+                        @RequestParam(name="sort_by_year", required = false) boolean haveSort,
+                        @RequestParam(required = false) Integer page,
+                        @RequestParam(name = "books_per_page", required = false) Integer size) {
+
+        model.addAttribute("books", this.bookService.getAll(page, size, haveSort));
 
         return "books/index";
     }
@@ -110,6 +115,16 @@ public class BookController {
         model.addAttribute("book", this.bookService.getById(id));
 
         return "books/edit";
+    }
+
+    @GetMapping("/search")
+    public String searchPage(Model model,
+                             @RequestParam(required = false, name = "keyword") String keyword) {
+        if (keyword != null && !keyword.isEmpty()) {
+            model.addAttribute("books", this.bookService.searchBook(keyword));
+        }
+
+        return "books/search";
     }
 
     private Boolean haveError(Book book, BindingResult bindingResult) {

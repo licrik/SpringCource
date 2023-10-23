@@ -67,4 +67,9 @@ public class Person {
     public void setYear(int year) {
         this.year = year;
     }
+
+    @Override
+    public String toString() {
+        return this.fio + ", " + this.year;
+    }
 }
